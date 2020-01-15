@@ -1,0 +1,8 @@
+.gradle/*
+build/*
+*.jar
+*.class
+*.xml
+.idea/*
+*.info
+BacoTimeRanksPluginFrozen.iml

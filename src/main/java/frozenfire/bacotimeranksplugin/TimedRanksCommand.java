@@ -1,6 +1,5 @@
-package frozenfire1893.timedranks;
+package frozenfire.bacotimeranksplugin;
 
-import javafx.scene.control.Pagination;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
@@ -9,9 +8,12 @@ import org.spongepowered.api.command.source.ConsoleSource;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.service.pagination.PaginationList;
+import org.spongepowered.api.service.pagination.PaginationService;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.TextTemplate;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.text.format.TextStyles;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +38,13 @@ public class TimedRanksCommand implements CommandExecutor {
             texts.add(Text.builder()
                     .append(Text.builder()
                             .color(RankColors[i])
-                            .append(Text.of(" - " + Hours[i]))
+                            .append(Text.of(Ranks[i] + " - " + Hours[i]))
                             .build())
                     .build());
         }
+        TextTemplate TimedRanks = TextTemplate.of(TextColors.GREEN, TextStyles.BOLD, "{Timed Ranks}");
+        PaginationList paginationlist = new Pagination().getPaginationService().builder().title(TimedRanks.apply().build()).contents(texts).build();
+        paginationlist.sendTo(player);
         return CommandResult.success();
     }
 }
-

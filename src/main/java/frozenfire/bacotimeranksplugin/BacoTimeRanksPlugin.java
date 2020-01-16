@@ -1,11 +1,9 @@
-package frozenfire1893.timedranks;
+package frozenfire.bacotimeranksplugin;
 
 import com.google.inject.Inject;
-import ninja.leaping.configurate.objectmapping.Setting;
 import org.slf4j.Logger;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.Listener;
@@ -14,13 +12,16 @@ import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.service.pagination.PaginationService;
 
 @Plugin(
-        id = "timedranks",
-        name = "Timedranks",
-        authors = "FrozenFire1893"
+        id = "bacotimeranksplugin",
+        name = "BacoTimeRanksPlugin",
+        description = "Shiny ranks",
+        authors = {
+                "Frozen"
+        }
 )
-public class Timedranks {
+public class BacoTimeRanksPlugin {
 
-    public static Timedranks instance;
+    public static BacoTimeRanksPlugin instance;
 
     @Inject
     private Logger logger;
@@ -33,13 +34,6 @@ public class Timedranks {
     {
         Sponge.getCommandManager().register(instance, CommandList.TimedRanks, "timedranks");
     }
-
-    //pagination service builder
-    public PaginationService getPaginationService() {
-        return game.getServiceManager().provide(PaginationService.class).get();
-    }
-
-    //text template builder
 
     //on game initialization
     @Listener
